@@ -1,834 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Performance Vitality System</title>
-  <meta
-    name="description"
-    content="Get the Performance Vitality Recipe Book and early access to the Performance Vitality App."
-  />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800;900&display=swap"
-    rel="stylesheet"
-  />
-
-  <style>
-    :root {
-      --dark: #111111;
-      --dark-green: #1f332c;
-      --mid-green: #49695c;
-      --green-glow: rgba(73, 105, 92, 0.3);
-      --gold: #b88c45;
-      --gold-light: #e7c98b;
-      --parchment: #f4ead9;
-      --cream: #fbf6ee;
-      --brown: #5d4a37;
-      --muted: #75624d;
-      --white: #ffffff;
-      --shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
-      --radius: 18px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Inter", sans-serif;
-      color: var(--dark);
-      background:
-        radial-gradient(circle at top, rgba(231, 201, 139, 0.08), transparent 28%),
-        linear-gradient(180deg, #f8f1e7 0%, #efe3d2 100%);
-      position: relative;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.08;
-      background-image:
-        radial-gradient(circle at 20% 20%, #000 0.5px, transparent 0.8px),
-        radial-gradient(circle at 80% 60%, #000 0.5px, transparent 0.8px);
-      background-size: 16px 16px, 18px 18px;
-      z-index: 1000;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      width: min(1120px, calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    .announcement {
-      background: var(--dark-green);
-      color: var(--gold-light);
-      text-align: center;
-      padding: 10px 20px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .hero {
-      background:
-        radial-gradient(ellipse at top, rgba(231, 201, 139, 0.16) 0%, transparent 56%),
-        linear-gradient(160deg, #2a4a2e 0%, #1a2e1c 58%, #3d2e0f 100%);
-      padding: 76px 24px 92px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(231, 201, 139, 0.16), transparent 35%);
-      pointer-events: none;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(231, 201, 139, 0.12);
-      border: 1px solid rgba(231, 201, 139, 0.35);
-      color: var(--gold-light);
-      padding: 8px 18px;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(2.3rem, 5.5vw, 4.3rem);
-      line-height: 1.08;
-      color: #fff;
-      max-width: 860px;
-      margin: 0 auto 18px;
-    }
-
-    .hero h1 span {
-      color: var(--gold-light);
-    }
-
-    .hero-sub {
-      font-size: clamp(1rem, 2vw, 1.18rem);
-      line-height: 1.75;
-      color: rgba(255, 255, 255, 0.84);
-      max-width: 700px;
-      margin: 0 auto 30px;
-    }
-
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      margin: 0 auto 28px;
-    }
-
-    .hero-badge {
-      padding: 10px 15px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.09);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      font-size: 0.92rem;
-      font-weight: 700;
-    }
-
-    .hero-cta-wrap {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .btn-hero,
-    .btn-cta,
-    .btn-secondary,
-    .preview-btn {
-      display: inline-block;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      border-radius: 12px;
-      font-weight: 900;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-    }
-
-    .btn-hero:hover,
-    .btn-cta:hover,
-    .btn-secondary:hover,
-    .preview-btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-hero {
-      background: linear-gradient(135deg, #dba83f 0%, #c08030 100%);
-      color: #fff;
-      padding: 16px 26px;
-      box-shadow: 0 10px 26px rgba(192, 128, 48, 0.35);
-      font-size: 1rem;
-      letter-spacing: 0.03em;
-    }
-
-    .btn-hero.alt {
-      background: rgba(255, 255, 255, 0.09);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      box-shadow: none;
-    }
-
-    .offers {
-      max-width: 1100px;
-      margin: -42px auto 0;
-      padding: 0 20px 50px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-      position: relative;
-      z-index: 10;
-    }
-
-    .card {
-      background: var(--parchment);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.22), 0 2px 0 rgba(231,201,139,0.2) inset;
-      border: 1px solid rgba(184, 140, 69, 0.2);
-    }
-
-    .card-featured {
-      border-color: var(--gold);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.26), 0 0 0 2px rgba(184,140,69,0.35);
-    }
-
-    .card-header {
-      background: var(--dark-green);
-      padding: 14px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .card-header-label {
-      font-size: 0.74rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.68);
-      font-weight: 800;
-    }
-
-    .card-header-tag {
-      background: var(--gold);
-      color: #fff;
-      font-size: 0.72rem;
-      font-weight: 900;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 6px 10px;
-      border-radius: 999px;
-    }
-
-    .card-body {
-      padding: 28px 28px 32px;
-    }
-
-    .card-book-img {
-      width: 118px;
-      float: left;
-      margin: 0 20px 12px 0;
-      border-radius: 8px;
-      box-shadow: 0 8px 22px rgba(0,0,0,0.24);
-    }
-
-    .card-title {
-      font-family: "Playfair Display", serif;
-      font-size: 1.5rem;
-      color: var(--dark-green);
-      line-height: 1.24;
-      margin-bottom: 6px;
-    }
-
-    .card-value {
-      font-size: 0.86rem;
-      color: var(--brown);
-      margin-bottom: 14px;
-    }
-
-    .card-value s {
-      opacity: 0.6;
-    }
-
-    .checklist {
-      list-style: none;
-      margin: 0 0 22px;
-      padding: 0;
-      clear: both;
-    }
-
-    .checklist li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(93, 74, 55, 0.12);
-      color: var(--brown);
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .checklist li:last-child {
-      border-bottom: none;
-    }
-
-    .check {
-      color: var(--mid-green);
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-
-    .price-tag {
-      margin-left: auto;
-      white-space: nowrap;
-      font-weight: 800;
-      color: var(--brown);
-      font-size: 0.86rem;
-    }
-
-    .price-block {
-      background: var(--dark-green);
-      border-radius: 12px;
-      padding: 18px 22px;
-      text-align: center;
-      margin-bottom: 18px;
-      color: #fff;
-    }
-
-    .price-was {
-      font-size: 0.84rem;
-      color: rgba(255,255,255,0.6);
-      text-decoration: line-through;
-      margin-bottom: 4px;
-    }
-
-    .price-now {
-      font-family: "Playfair Display", serif;
-      font-size: 2.6rem;
-      font-weight: 900;
-      color: var(--gold-light);
-      line-height: 1;
-    }
-
-    .price-now sup {
-      font-size: 1.2rem;
-      vertical-align: super;
-    }
-
-    .price-note {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.72);
-      margin-top: 6px;
-    }
-
-    .price-warning {
-      font-size: 0.8rem;
-      color: #f2cd75;
-      margin-top: 8px;
-      font-weight: 700;
-    }
-
-    .btn-cta {
-      display: block;
-      width: 100%;
-      background: linear-gradient(135deg, #dba83f 0%, #c08030 100%);
-      color: #fff;
-      padding: 16px 24px;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      text-align: center;
-      box-shadow: 0 6px 20px rgba(168,116,48,0.42);
-      margin-bottom: 12px;
-    }
-
-    .btn-secondary {
-      display: block;
-      width: 100%;
-      background: transparent;
-      color: var(--dark-green);
-      padding: 12px 24px;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      font-weight: 800;
-      text-align: center;
-      border: 1px solid rgba(31,51,44,0.18);
-    }
-
-    .trust-row {
-      margin-top: 10px;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    /* preview section */
-    .book-preview-section {
-      padding: 26px 20px 70px;
-    }
-
-    .book-preview-container {
-      max-width: 1120px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 42px;
-      align-items: center;
-      background: rgba(255,255,255,0.42);
-      border: 1px solid rgba(184, 140, 69, 0.14);
-      border-radius: 22px;
-      padding: 34px;
-      box-shadow: 0 16px 42px rgba(0,0,0,0.08);
-      backdrop-filter: blur(4px);
-    }
-
-    .preview-badge {
-      display: inline-block;
-      background: var(--dark-green);
-      color: #fff;
-      padding: 8px 15px;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      margin-bottom: 18px;
-    }
-
-    .book-preview-text h2 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.1;
-      margin: 0 0 14px;
-      color: var(--dark-green);
-    }
-
-    .book-preview-text p {
-      font-size: 1.04rem;
-      line-height: 1.75;
-      color: var(--brown);
-      margin-bottom: 22px;
-      max-width: 580px;
-    }
-
-    .preview-features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 26px;
-    }
-
-    .preview-features span {
-      background: rgba(73, 105, 92, 0.09);
-      color: var(--dark-green);
-      border: 1px solid rgba(73, 105, 92, 0.14);
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-size: 0.93rem;
-      font-weight: 700;
-    }
-
-    .preview-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    .preview-btn.primary-btn {
-      background: var(--dark-green);
-      color: #fff;
-      padding: 14px 22px;
-      box-shadow: 0 10px 24px rgba(31,51,44,0.18);
-    }
-
-    .preview-btn.secondary-btn {
-      background: linear-gradient(135deg, #dba83f 0%, #c08030 100%);
-      color: #fff;
-      padding: 14px 22px;
-      box-shadow: 0 10px 24px rgba(192,128,48,0.22);
-    }
-
-    .book-preview-visual {
-      display: flex;
-      justify-content: center;
-    }
-
-    .preview-image-link {
-      width: 100%;
-      max-width: 430px;
-      text-decoration: none;
-    }
-
-    .preview-image-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 22px;
-      box-shadow: var(--shadow);
-      background: #fff;
-    }
-
-    .preview-image-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .preview-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.14));
-      display: flex;
-      align-items: end;
-      justify-content: center;
-      padding: 24px;
-    }
-
-    .preview-overlay-content {
-      text-align: center;
-      color: #fff;
-    }
-
-    .play-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.2);
-      font-size: 1.25rem;
-      margin-bottom: 12px;
-      backdrop-filter: blur(4px);
-    }
-
-    .overlay-text {
-      display: block;
-      font-size: 1rem;
-      font-weight: 800;
-    }
-
-    .story-section {
-      padding: 14px 20px 70px;
-    }
-
-    .story-card {
-      max-width: 980px;
-      margin: 0 auto;
-      background: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0.32));
-      border: 1px solid rgba(184,140,69,0.14);
-      border-radius: 22px;
-      padding: 36px;
-      box-shadow: 0 14px 38px rgba(0,0,0,0.08);
-    }
-
-    .story-card h3 {
-      font-family: "Playfair Display", serif;
-      color: var(--dark-green);
-      font-size: 2rem;
-      margin: 0 0 14px;
-    }
-
-    .story-card p {
-      margin: 0;
-      color: var(--brown);
-      line-height: 1.85;
-      font-size: 1rem;
-    }
-
-    .footer-note {
-      text-align: center;
-      padding: 0 20px 60px;
-      color: var(--muted);
-      font-size: 0.88rem;
-      font-weight: 600;
-    }
-
-    @media (max-width: 900px) {
-      .offers,
-      .book-preview-container {
-        grid-template-columns: 1fr;
-      }
-
-      .offers {
-        margin-top: -24px;
-      }
-
-      .book-preview-text {
-        text-align: center;
-      }
-
-      .book-preview-text p {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .preview-features,
-      .preview-buttons {
-        justify-content: center;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero {
-        padding: 60px 18px 76px;
-      }
-
-      .card-body,
-      .story-card,
-      .book-preview-container {
-        padding: 22px;
-      }
-
-      .card-book-img {
-        float: none;
-        margin: 0 auto 18px;
-        width: 140px;
-      }
-
-      .card-title,
-      .card-value {
-        text-align: center;
-      }
-
-      .preview-overlay {
-        padding: 18px;
-      }
-
-      .overlay-text {
-        font-size: 0.92rem;
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Performance Vitality System</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin:0;
+  font-family:Inter;
+  background:#f5efe6;
+}
+
+/* HERO */
+.hero {
+  background:#1f332c;
+  color:white;
+  padding:60px 20px;
+  text-align:center;
+}
+
+.hero h1 {
+  font-family:Playfair Display;
+  font-size:40px;
+}
+
+.hero span {
+  color:#e7c98b;
+}
+
+.btn {
+  background:#c08030;
+  color:white;
+  padding:15px 25px;
+  display:inline-block;
+  margin-top:20px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:800;
+}
+
+/* PREVIEW */
+.preview {
+  padding:60px 20px;
+  background:white;
+  text-align:center;
+}
+
+.preview h2 {
+  font-family:Playfair Display;
+  font-size:32px;
+}
+
+.preview-images {
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.preview-images img {
+  width:30%;
+  border-radius:10px;
+}
+
+.preview-cover {
+  width:250px;
+  margin:20px auto;
+}
+
+/* OFFERS */
+.offers {
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  padding:60px 20px;
+}
+
+.card {
+  background:#f4ead9;
+  padding:20px;
+  width:300px;
+  border-radius:10px;
+  text-align:center;
+}
+
+.price {
+  font-size:32px;
+  color:#c08030;
+  font-weight:800;
+}
+</style>
 </head>
+
 <body>
-  <div class="announcement">
-    Limited Early Access Pricing • Book + App Bundle Available Now
-  </div>
 
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-eyebrow">Performance Vitality System</div>
+<!-- HERO -->
+<section class="hero">
+<h1>Transform Your Energy <br><span>in 7 Days</span></h1>
+<p>Simple system for real life</p>
 
-      <h1>
-        Transform Your Energy, Health & Daily Routine
-        <span>in Just 7 Days</span>
-      </h1>
+<a href="#offers" class="btn">Get Instant Access</a>
+</section>
 
-      <p class="hero-sub">
-        A simple, structured wellness system designed for real life — with easy recipes,
-        a guided plan, and priority early access to the Performance Vitality App.
-      </p>
+<!-- PREVIEW -->
+<section class="preview" id="book-preview">
+<h2>Look Inside Before You Buy</h2>
 
-      <div class="hero-badges">
-        <div class="hero-badge">36 Easy Recipes</div>
-        <div class="hero-badge">7-Day Guided Plan</div>
-        <div class="hero-badge">Bonus Snacks & Healing Drinks</div>
-      </div>
+<img src="book-cover.jpg" class="preview-cover">
 
-      <div class="hero-cta-wrap">
-        <a href="#offers" class="btn-hero">Get Instant Access</a>
-        <a href="#book-preview" class="btn-hero alt">Preview the Book</a>
-      </div>
-    </div>
-  </section>
+<div class="preview-images">
+<img src="sample1.jpg">
+<img src="sample2.jpg">
+<img src="sample3.jpg">
+</div>
 
-  <section id="offers" class="offers">
-    <article class="card">
-      <div class="card-header">
-        <div class="card-header-label">Recipe Book</div>
-        <div class="card-header-tag">Early Access</div>
-      </div>
+<br>
 
-      <div class="card-body">
-        <img
-          class="card-book-img"
-          src="YOUR_BOOK_COVER_IMAGE_URL"
-          alt="Performance Vitality Recipe Book cover"
-        />
+<a href="sample-preview.pdf" class="btn" target="_blank">
+Preview Sample PDF
+</a>
 
-        <div class="card-title">Performance Vitality Recipe Book</div>
-        <div class="card-value">Retail Value: <s>$29.99</s></div>
+</section>
 
-        <ul class="checklist">
-          <li><span class="check">✔</span>36 easy recipes <span class="price-tag">Included</span></li>
-          <li><span class="check">✔</span>7-day plan <span class="price-tag">Included</span></li>
-          <li><span class="check">✔</span>Bonus snacks & healing drinks <span class="price-tag">Included</span></li>
-          <li><span class="check">✔</span>Instant digital access <span class="price-tag">Today</span></li>
-        </ul>
+<!-- OFFERS -->
+<section class="offers" id="offers">
 
-        <div class="price-block">
-          <div class="price-was">$29.99</div>
-          <div class="price-now">$10<sup>.99</sup></div>
-          <div class="price-note">One-time payment</div>
-        </div>
+<!-- BOOK -->
+<div class="card">
+<h3>Recipe Book</h3>
 
-        <a class="btn-cta" href="YOUR_STRIPE_BOOK_LINK" target="_blank" rel="noopener noreferrer">
-          Get Instant Access – $10.99
-        </a>
+<p><s>$29.99</s></p>
 
-        <a class="btn-secondary" href="https://heyzine.com/flip-book/39a79a59da.html" target="_blank" rel="noopener noreferrer">
-          Preview the Book
-        </a>
+<div class="price">$10.99</div>
 
-        <div class="trust-row">Instant access • Secure checkout</div>
-      </div>
-    </article>
+<a href="https://buy.stripe.com/28EfZhcHVdzN71X4MD8g003" class="btn">
+Buy Book
+</a>
 
-    <article class="card card-featured">
-      <div class="card-header">
-        <div class="card-header-label">Best Value</div>
-        <div class="card-header-tag">Bundle</div>
-      </div>
+</div>
 
-      <div class="card-body">
-        <div class="card-title">Full Performance Vitality System</div>
-        <div class="card-value">Total Value: <s>$79.99+</s></div>
+<!-- BUNDLE -->
+<div class="card">
+<h3>Full System</h3>
 
-        <ul class="checklist">
-          <li><span class="check">✔</span>Recipe Book (Retail) <span class="price-tag">$29.99</span></li>
-          <li><span class="check">✔</span>Performance Vitality App <span class="price-tag">$12/month</span></li>
-          <li><span class="check">✔</span>7-Day System + Guides <span class="price-tag">$19.99</span></li>
-          <li><span class="check">✔</span>Bonus snacks & healing drinks <span class="price-tag">Included</span></li>
-        </ul>
+<p><s>$79.99</s></p>
 
-        <div class="price-block">
-          <div class="price-was">$79.99+</div>
-          <div class="price-now">$25<sup>.99</sup></div>
-          <div class="price-note">One-time payment today</div>
-          <div class="price-warning">After May 30th: App becomes $12/month</div>
-        </div>
+<div class="price">$25.99</div>
 
-        <a class="btn-cta" href="YOUR_STRIPE_BUNDLE_LINK" target="_blank" rel="noopener noreferrer">
-          Get Full System Access – $25.99
-        </a>
+<a href="https://buy.stripe.com/eVq3cvazN9jxfytbb18g004" class="btn">
+Buy Bundle
+</a>
 
-        <a class="btn-secondary" href="YOUR_GOOGLE_FORM_LINK" target="_blank" rel="noopener noreferrer">
-          Notify Me on Launch Day
-        </a>
+<br><br>
 
-        <div class="trust-row">Priority app access • Limited early pricing</div>
-      </div>
-    </article>
-  </section>
+<a href="PASTE_YOUR_REAL_FORM_LINK_HERE" target="_blank">
+Notify Me (App Launch)
+</a>
 
-  <section id="book-preview" class="book-preview-section">
-    <div class="book-preview-container">
-      <div class="book-preview-text">
-        <span class="preview-badge">Flipbook Preview Available</span>
-        <h2>Preview the Performance Vitality Recipe Book</h2>
-        <p>
-          Take a look inside before you buy. Explore the pages, preview the design,
-          and see what makes this system simple, structured, and easy to follow.
-        </p>
+</div>
 
-        <div class="preview-features">
-          <span>36 Easy Recipes</span>
-          <span>7-Day Structure</span>
-          <span>Wellness-Focused Design</span>
-        </div>
+</section>
 
-        <div class="preview-buttons">
-          <a
-            href="https://heyzine.com/flip-book/39a79a59da.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="preview-btn primary-btn"
-          >
-            Preview the Book
-          </a>
-
-          <a
-            href="#offers"
-            class="preview-btn secondary-btn"
-          >
-            Get Instant Access
-          </a>
-        </div>
-      </div>
-
-      <div class="book-preview-visual">
-        <a
-          href="https://heyzine.com/flip-book/39a79a59da.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="preview-image-link"
-        >
-          <div class="preview-image-card">
-            <img
-              src="YOUR_BOOK_COVER_IMAGE_URL"
-              alt="Performance Vitality Recipe Book Preview"
-            />
-            <div class="preview-overlay">
-              <div class="preview-overlay-content">
-                <span class="play-icon">▶</span>
-                <span class="overlay-text">Click to Flip Through Preview</span>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="story-section">
-    <div class="story-card">
-      <h3>Why This System Works</h3>
-      <p>
-        This is more than a recipe book. It was built from real-life health challenges,
-        the need for structure, and the desire to create something practical for everyday use.
-        The goal is simple: help you build consistency, improve your routine, and take
-        steady steps toward better wellness — one day at a time.
-      </p>
-    </div>
-  </section>
-
-  <div class="footer-note">
-    Book buyers get instant access. Bundle buyers also lock in priority early access to the app launch.
-  </div>
 </body>
 </html>
