@@ -1,168 +1,955 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Performance Vitality System</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Performance Vitality System</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 
-<style>
-body {
-  margin:0;
-  font-family:Inter;
-  background:#f5efe6;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-/* HERO */
-.hero {
-  background:#1f332c;
-  color:white;
-  padding:60px 20px;
-  text-align:center;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-.hero h1 {
-  font-family:Playfair Display;
-  font-size:40px;
-}
+    body {
+      margin: 0;
+      font-family: 'Lato', sans-serif;
+      background: #f5efe4;
+      color: #1e1e1e;
+      overflow-x: hidden;
+    }
 
-.hero span {
-  color:#e7c98b;
-}
+    .announcement {
+      background: #2a4a2e;
+      color: #e8b84b;
+      text-align: center;
+      padding: 12px 18px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
 
-.btn {
-  background:#c08030;
-  color:white;
-  padding:15px 25px;
-  display:inline-block;
-  margin-top:20px;
-  border-radius:10px;
-  text-decoration:none;
-  font-weight:800;
-}
+    .hero {
+      background: linear-gradient(160deg, #2a4a2e 0%, #1a2e1c 60%, #3d2e0f 100%);
+      color: #fff;
+      padding: 72px 20px 90px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-/* PREVIEW */
-.preview {
-  padding:60px 20px;
-  background:white;
-  text-align:center;
-}
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,151,58,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
 
-.preview h2 {
-  font-family:Playfair Display;
-  font-size:32px;
-}
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
-.preview-images {
-  display:flex;
-  gap:10px;
-  justify-content:center;
-  margin-top:20px;
-}
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #e8b84b;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
 
-.preview-images img {
-  width:30%;
-  border-radius:10px;
-}
+    .hero h1 {
+      margin: 0 auto 18px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.3rem, 5vw, 4.3rem);
+      line-height: 1.15;
+      max-width: 850px;
+    }
 
-.preview-cover {
-  width:250px;
-  margin:20px auto;
-}
+    .hero h1 span {
+      color: #e8b84b;
+    }
 
-/* OFFERS */
-.offers {
-  display:flex;
-  gap:20px;
-  justify-content:center;
-  padding:60px 20px;
-}
+    .hero-sub {
+      max-width: 650px;
+      margin: 0 auto 26px;
+      color: rgba(255,255,255,0.82);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
 
-.card {
-  background:#f4ead9;
-  padding:20px;
-  width:300px;
-  border-radius:10px;
-  text-align:center;
-}
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(201,151,58,0.16);
+      border: 1px solid rgba(201,151,58,0.35);
+      color: #e8b84b;
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 34px;
+    }
 
-.price {
-  font-size:32px;
-  color:#c08030;
-  font-weight:800;
-}
-</style>
+    .offers {
+      max-width: 1100px;
+      margin: -48px auto 0;
+      padding: 0 20px 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .card {
+      background: #ede3d0;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(201,151,58,0.28);
+      box-shadow: 0 18px 55px rgba(0,0,0,0.18);
+    }
+
+    .card.featured {
+      border: 2px solid #c9973a;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.22);
+    }
+
+    .card-header {
+      background: #2a4a2e;
+      color: #fff;
+      padding: 14px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-header-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+      font-weight: 800;
+    }
+
+    .card-header-tag {
+      background: #c9973a;
+      color: #fff;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .card-body {
+      padding: 28px 26px 30px;
+    }
+
+    .book-icon-box {
+      width: 112px;
+      height: 148px;
+      float: left;
+      margin: 0 18px 14px 0;
+      border-radius: 8px;
+      background: linear-gradient(145deg, #2a4a2e, #1a2e1c);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 5px 8px 22px rgba(0,0,0,0.25);
+      padding: 8px;
+      text-align: center;
+    }
+
+    .bundle-box {
+      background: linear-gradient(145deg, #315f3d, #213826);
+    }
+
+    .book-icon-box .emoji {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .book-icon-box .mini-text {
+      font-size: 0.52rem;
+      line-height: 1.35;
+      color: #e8b84b;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      color: #2a4a2e;
+      font-size: 1.55rem;
+      line-height: 1.25;
+      margin: 0 0 8px;
+    }
+
+    .card-value {
+      margin: 0 0 16px;
+      font-size: 0.88rem;
+      color: #6b4c2a;
+    }
+
+    .card-value s {
+      opacity: 0.65;
+    }
+
+    .checklist {
+      list-style: none;
+      margin: 0 0 22px;
+      padding: 0;
+      clear: both;
+    }
+
+    .checklist li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 8px 0;
+      font-size: 0.95rem;
+      color: #4a3728;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+
+    .check {
+      color: #3d6b42;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .price-tag {
+      margin-left: auto;
+      font-size: 0.84rem;
+      color: #6b4c2a;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .price-block {
+      background: #2a4a2e;
+      border-radius: 14px;
+      padding: 18px 20px;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .price-was {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.56);
+      text-decoration: line-through;
+      margin-bottom: 4px;
+    }
+
+    .price-now {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.65rem;
+      color: #e8b84b;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .price-now sup {
+      font-size: 1.25rem;
+      vertical-align: super;
+    }
+
+    .price-note {
+      margin-top: 6px;
+      font-size: 0.77rem;
+      color: rgba(255,255,255,0.68);
+    }
+
+    .price-warning {
+      margin-top: 6px;
+      font-size: 0.8rem;
+      color: #e8b84b;
+      font-weight: 800;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 15px 20px;
+      border-radius: 11px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 0.98rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: all 0.25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #c9973a 0%, #a87430 100%);
+      color: #fff;
+      box-shadow: 0 8px 22px rgba(168,116,48,0.35);
+      margin-bottom: 12px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(168,116,48,0.42);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #2a4a2e;
+      border: 2px solid #3d6b42;
+      margin-bottom: 14px;
+    }
+
+    .btn-secondary:hover {
+      background: #3d6b42;
+      color: #fff;
+    }
+
+    .trust-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      font-size: 0.76rem;
+      color: #4a3728;
+    }
+
+    .section {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 70px 22px;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.76rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9973a;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      color: #2a4a2e;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin: 0 0 16px;
+    }
+
+    .section-sub {
+      text-align: center;
+      max-width: 660px;
+      margin: 0 auto 42px;
+      color: #4a3728;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 26px 22px;
+      border: 1px solid rgba(201,151,58,0.2);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .feature-icon {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+    }
+
+    .feature-card h3 {
+      font-family: 'Playfair Display', serif;
+      color: #2a4a2e;
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: #4a3728;
+      line-height: 1.6;
+      font-size: 0.9rem;
+    }
+
+    .divider {
+      max-width: 540px;
+      height: 2px;
+      margin: 0 auto;
+      background: linear-gradient(90deg, transparent, #c9973a, transparent);
+      opacity: 0.38;
+    }
+
+    .preview-section {
+      padding: 76px 20px;
+      background: #f5efe4;
+      text-align: center;
+    }
+
+    .preview-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .preview-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #c9973a;
+      margin-bottom: 12px;
+    }
+
+    .preview-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      color: #2a4a2e;
+      margin: 0 0 12px;
+    }
+
+    .preview-sub {
+      max-width: 640px;
+      margin: 0 auto 28px;
+      color: #4a3728;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .preview-frame {
+      background: #fff;
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+      border: 1px solid rgba(201,151,58,0.25);
+      overflow: hidden;
+    }
+
+    .preview-frame iframe {
+      width: 100%;
+      height: 620px;
+      border: none;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .preview-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .preview-btn,
+    .buy-btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 0.96rem;
+      letter-spacing: 0.04em;
+    }
+
+    .preview-btn {
+      border: 2px solid #2a4a2e;
+      color: #2a4a2e;
+      background: transparent;
+    }
+
+    .buy-btn {
+      background: linear-gradient(135deg, #c9973a 0%, #a87430 100%);
+      color: white;
+      box-shadow: 0 8px 20px rgba(168,116,48,0.32);
+    }
+
+    .story-section {
+      background: linear-gradient(160deg, #1a2e1c 0%, #2a4a2e 100%);
+      color: #fff;
+      padding: 70px 22px;
+      text-align: center;
+    }
+
+    .story-section .section-title,
+    .story-section .section-sub {
+      color: #fff;
+    }
+
+    .story-section .section-sub {
+      color: rgba(255,255,255,0.72);
+    }
+
+    .story-points {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .story-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(232,184,75,0.18);
+      border-radius: 14px;
+      padding: 24px 20px;
+    }
+
+    .story-card h3 {
+      margin: 0 0 10px;
+      font-family: 'Playfair Display', serif;
+      color: #e8b84b;
+      font-size: 1.05rem;
+    }
+
+    .story-card p {
+      margin: 0;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.82);
+      font-size: 0.92rem;
+    }
+
+    .final-cta {
+      background: linear-gradient(160deg, #2a4a2e 0%, #1e3520 100%);
+      padding: 82px 22px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .final-cta h2 {
+      margin: 0 0 14px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 2.9rem);
+      line-height: 1.2;
+    }
+
+    .final-cta h2 span {
+      color: #e8b84b;
+    }
+
+    .final-cta p {
+      max-width: 620px;
+      margin: 0 auto 36px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .final-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .final-trust {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.56);
+    }
+
+    footer {
+      background: #111;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 0.76rem;
+      line-height: 1.8;
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.55);
+    }
+
+    .sticky-bar {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .features-grid,
+      .story-points {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .offers {
+        grid-template-columns: 1fr;
+        margin-top: -28px;
+      }
+
+      .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .features-grid,
+      .story-points {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-frame iframe {
+        height: 460px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding: 58px 18px 78px;
+      }
+
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+
+      .preview-frame iframe {
+        height: 390px;
+      }
+
+      .sticky-bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #2a4a2e;
+        box-shadow: 0 -6px 20px rgba(0,0,0,0.25);
+        padding: 12px 14px;
+        display: flex;
+        gap: 10px;
+        z-index: 999;
+      }
+
+      .sticky-bar a {
+        flex: 1;
+        text-align: center;
+        text-decoration: none;
+        padding: 12px 10px;
+        border-radius: 9px;
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .sticky-book {
+        background: #c9973a;
+        color: #fff;
+      }
+
+      .sticky-bundle {
+        border: 2px solid #c9973a;
+        color: #e8b84b;
+        background: transparent;
+      }
+
+      body {
+        padding-bottom: 74px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- HERO -->
-<section class="hero">
-<h1>Transform Your Energy <br><span>in 7 Days</span></h1>
-<p>Simple system for real life</p>
+  <div class="announcement">
+    ⚡ Limited Early Pricing — Book $10.99 · Bundle $25.99 · Amazon & Kindle Coming Soon
+  </div>
 
-<a href="#offers" class="btn">Get Instant Access</a>
-</section>
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Performance Vitality System</div>
+      <h1>Reset Your Energy, <br><span>Routine & Consistency</span></h1>
+      <p class="hero-sub">
+        A complete nutrition and lifestyle support system built for people who want
+        real, lasting results — not another plan that fades in two weeks.
+      </p>
+      <div class="hero-badge">⭐⭐⭐⭐⭐ 5-Star Value • Early Access Pricing</div>
+    </div>
+  </section>
 
-<!-- PREVIEW -->
-<section class="preview" id="book-preview">
-<h2>Look Inside Before You Buy</h2>
+  <section class="offers">
+    <article class="card">
+      <div class="card-header">
+        <span class="card-header-label">Recipe Book Only</span>
+        <span class="card-header-tag">Best Entry Point</span>
+      </div>
+      <div class="card-body">
+        <div class="book-icon-box">
+          <div class="emoji">📗</div>
+          <div class="mini-text">Performance Vitality Recipe Book</div>
+        </div>
 
-<img src="book-cover.jpg" class="preview-cover">
+        <h2 class="card-title">Performance Vitality Recipe Book</h2>
+        <p class="card-value">Retail Value: <s>$30.00</s> — Early Access Price</p>
 
-<div class="preview-images">
-<img src="sample1.jpg">
-<img src="sample2.jpg">
-<img src="sample3.jpg">
-</div>
+        <ul class="checklist">
+          <li><span class="check">✔</span><span>36 recipes for energy, recovery, and balance</span></li>
+          <li><span class="check">✔</span><span>Bonus snacks and healing drinks</span></li>
+          <li><span class="check">✔</span><span>7-day vitality plan and grocery system</span></li>
+          <li><span class="check">✔</span><span>Nutrition guidance and wellness support</span></li>
+          <li><span class="check">✔</span><span>Coming soon to Amazon and Kindle</span></li>
+        </ul>
 
-<br>
+        <div class="price-block">
+          <div class="price-was">Retail Value: $30.00</div>
+          <div class="price-now"><sup>$</sup>10.99</div>
+          <div class="price-note">One-time payment • Instant access</div>
+        </div>
 
-<a href="sample-preview.pdf" class="btn" target="_blank">
-Preview Sample PDF
-</a>
+        <a href="https://buy.stripe.com/00weVddLZ2V9ae96UL8g002" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          Get Instant Access — $10.99
+        </a>
 
-</section>
+        <a href="https://heyzine.com/flip-book/39a79a59da.html" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          Preview the Book First
+        </a>
 
-<!-- OFFERS -->
-<section class="offers" id="offers">
+        <div class="trust-row">
+          <span>🔒 Secure Checkout</span>
+          <span>⚡ Instant Access</span>
+          <span>📖 Digital Delivery</span>
+        </div>
+      </div>
+    </article>
 
-<!-- BOOK -->
-<div class="card">
-<h3>Recipe Book</h3>
+    <article class="card featured">
+      <div class="card-header">
+        <span class="card-header-label">Bundle Offer</span>
+        <span class="card-header-tag">🔥 Most Value</span>
+      </div>
+      <div class="card-body">
+        <div class="book-icon-box bundle-box">
+          <div class="emoji">📱</div>
+          <div class="mini-text">Book + App Early Access Bundle</div>
+        </div>
 
-<p><s>$29.99</s></p>
+        <h2 class="card-title">Book + 90-Day App Access Bundle</h2>
+        <p class="card-value">Total Value: <s>$79.99</s> — Discounted Bundle Price</p>
 
-<div class="price">$10.99</div>
+        <ul class="checklist">
+          <li><span class="check">✔</span><span>Performance Vitality Recipe Book</span><span class="price-tag">$29.99</span></li>
+          <li><span class="check">✔</span><span>90-day app early priority access</span><span class="price-tag">$15.99</span></li>
+          <li><span class="check">✔</span><span>Daily planning and routine structure</span></li>
+          <li><span class="check">✔</span><span>Priority access before official release date</span></li>
+          <li><span class="check">✔</span><span>Best value if you want the full experience</span></li>
+        </ul>
 
-<a href="https://buy.stripe.com/28EfZhcHVdzN71X4MD8g003" class="btn">
-Buy Book
-</a>
+        <div class="price-block">
+          <div class="price-was">Total Value: $79.99</div>
+          <div class="price-now"><sup>$</sup>25.99</div>
+          <div class="price-note">Bundle savings • Book + app access together</div>
+          <div class="price-warning">Save more before the official launch</div>
+        </div>
 
-</div>
+        <a href="https://buy.stripe.com/eVq3cvazN9jxfytbb18g004" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          Get Instant Access Bundle — $25.99
+        </a>
 
-<!-- BUNDLE -->
-<div class="card">
-<h3>Full System</h3>
+        <a href="https://heyzine.com/flip-book/39a79a59da.html" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          Preview the Recipe Book
+        </a>
 
-<p><s>$79.99</s></p>
+        <div class="trust-row">
+          <span>🔒 Secure Checkout</span>
+          <span>📱 Early App Access</span>
+          <span>🏷 Limited Pricing</span>
+        </div>
+      </div>
+    </article>
+  </section>
 
-<div class="price">$25.99</div>
+  <div class="divider"></div>
 
-<a href="https://buy.stripe.com/eVq3cvazN9jxfytbb18g004" class="btn">
-Buy Bundle
-</a>
+  <section class="section">
+    <div class="section-label">What You Get</div>
+    <h2 class="section-title">Everything You Need to Get Started</h2>
+    <p class="section-sub">
+      This is more than a cookbook. It is a practical system built to support
+      your meals, your routine, your energy, and your consistency.
+    </p>
 
-<br><br>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🥗</div>
+        <h3>36 High-Value Recipes</h3>
+        <p>Simple meals designed to support energy, healing, and real-life consistency.</p>
+      </div>
 
-<a href="PASTE_YOUR_REAL_FORM_LINK_HERE" target="_blank">
-Notify Me (App Launch)
-</a>
+      <div class="feature-card">
+        <div class="feature-icon">🍓</div>
+        <h3>Bonus Snacks & Drinks</h3>
+        <p>Healthy snacks and healing drinks to support hydration, focus, and recovery.</p>
+      </div>
 
-</div>
+      <div class="feature-card">
+        <div class="feature-icon">🛒</div>
+        <h3>Grocery & Prep System</h3>
+        <p>Includes practical grocery guidance and prep support to keep life simple.</p>
+      </div>
 
-</section>
+      <div class="feature-card">
+        <div class="feature-icon">📅</div>
+        <h3>7-Day Vitality Calendar</h3>
+        <p>Use a simple weekly structure for meals, hydration, movement, and routine.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>Priority App Access</h3>
+        <p>Bundle buyers get early access to the upcoming app before public release.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Instant Delivery</h3>
+        <p>Purchase today and start immediately with digital access and next-step guidance.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="preview-section">
+    <div class="preview-wrap">
+      <p class="preview-eyebrow">Look Inside</p>
+      <h2>Preview the Book Before You Buy</h2>
+      <p class="preview-sub">
+        See the layout, recipes, and overall feel before you purchase.
+        If the embedded preview does not load on your device, use the preview button below.
+      </p>
+
+      <div class="preview-frame">
+        <iframe
+          src="https://heyzine.com/flip-book/39a79a59da.html?embed=1"
+          title="Performance Vitality Recipe Book Preview"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="preview-actions">
+        <a
+          href="https://heyzine.com/flip-book/39a79a59da.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="preview-btn">
+          Open Full Preview
+        </a>
+
+        <a
+          href="https://buy.stripe.com/00weVddLZ2V9ae96UL8g002"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="buy-btn">
+          Get the Book — $10.99
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="story-section">
+    <div class="section-label">Why This Matters</div>
+    <h2 class="section-title">Built From More Than Recipes</h2>
+    <p class="section-sub">
+      The Performance Vitality System was created to help people build structure,
+      consistency, and better daily habits through food, planning, and support.
+    </p>
+
+    <div class="story-points">
+      <div class="story-card">
+        <h3>Support Your Energy</h3>
+        <p>Use simple meals and supportive routines that help you feel more steady throughout the day.</p>
+      </div>
+
+      <div class="story-card">
+        <h3>Build Your Routine</h3>
+        <p>Turn good intentions into daily action through a structure that feels realistic and sustainable.</p>
+      </div>
+
+      <div class="story-card">
+        <h3>Grow Into the App</h3>
+        <p>The book helps you start. The app helps you stay consistent and organized long-term.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <h2>Ready to <span>Start Your Reset?</span></h2>
+    <p>
+      Choose the option that fits you best. Start with the book, or save more by
+      getting the book and early app access together.
+    </p>
+
+    <div class="final-buttons">
+      <a href="https://buy.stripe.com/00weVddLZ2V9ae96UL8g002" target="_blank" rel="noopener noreferrer" class="buy-btn">
+        Book Only — $10.99
+      </a>
+      <a href="https://buy.stripe.com/eVq3cvazN9jxfytbb18g004" target="_blank" rel="noopener noreferrer" class="buy-btn">
+        Bundle — $25.99
+      </a>
+    </div>
+
+    <div class="final-trust">
+      <span>🔒 Secure Stripe Checkout</span>
+      <span>⚡ Instant Digital Access</span>
+      <span>📱 Early App Access Included in Bundle</span>
+      <span>🏷 Limited Launch Pricing</span>
+    </div>
+  </section>
+
+  <footer>
+    <div>
+      © 2025 Performance Vitality •
+      <a href="mailto:support@performancevitality.com">Contact Support</a>
+    </div>
+    <div style="margin-top:6px;">
+      Results may vary. This product is not intended to diagnose, treat, cure, or prevent any disease.
+    </div>
+  </footer>
+
+  <div class="sticky-bar">
+    <a href="https://buy.stripe.com/00weVddLZ2V9ae96UL8g002" target="_blank" rel="noopener noreferrer" class="sticky-book">
+      Book — $10.99
+    </a>
+    <a href="https://buy.stripe.com/eVq3cvazN9jxfytbb18g004" target="_blank" rel="noopener noreferrer" class="sticky-bundle">
+      Bundle — $25.99
+    </a>
+  </div>
 
 </body>
 </html>
