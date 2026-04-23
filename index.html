@@ -4,17 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Performance Vitality System</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -76,9 +70,7 @@
       max-width: 850px;
     }
 
-    .hero h1 span {
-      color: #e8b84b;
-    }
+    .hero h1 span { color: #e8b84b; }
 
     .hero-sub {
       max-width: 650px;
@@ -211,9 +203,7 @@
       color: #6b4c2a;
     }
 
-    .card-value s {
-      opacity: 0.65;
-    }
+    .card-value s { opacity: 0.65; }
 
     .checklist {
       list-style: none;
@@ -232,9 +222,7 @@
       border-bottom: 1px solid rgba(0,0,0,0.06);
     }
 
-    .checklist li:last-child {
-      border-bottom: none;
-    }
+    .checklist li:last-child { border-bottom: none; }
 
     .check {
       color: #3d6b42;
@@ -449,29 +437,12 @@
       font-size: 1rem;
     }
 
-    .preview-frame {
-      background: #fff;
-      border-radius: 18px;
-      padding: 14px;
-      box-shadow: 0 18px 50px rgba(0,0,0,0.18);
-      border: 1px solid rgba(201,151,58,0.25);
-      overflow: hidden;
-    }
-
-    .preview-frame iframe {
-      width: 100%;
-      height: 620px;
-      border: none;
-      border-radius: 12px;
-      display: block;
-    }
-
-    .preview-actions {
+    .preview-buttons {
       display: flex;
-      gap: 14px;
       justify-content: center;
+      gap: 14px;
       flex-wrap: wrap;
-      margin-top: 22px;
+      margin-top: 10px;
     }
 
     .preview-btn,
@@ -556,9 +527,7 @@
       line-height: 1.2;
     }
 
-    .final-cta h2 span {
-      color: #e8b84b;
-    }
+    .final-cta h2 span { color: #e8b84b; }
 
     .final-cta p {
       max-width: 620px;
@@ -594,13 +563,9 @@
       line-height: 1.8;
     }
 
-    footer a {
-      color: rgba(255,255,255,0.55);
-    }
+    footer a { color: rgba(255,255,255,0.55); }
 
-    .sticky-bar {
-      display: none;
-    }
+    .sticky-bar { display: none; }
 
     @media (max-width: 900px) {
       .features-grid,
@@ -624,10 +589,6 @@
       .story-points {
         grid-template-columns: 1fr;
       }
-
-      .preview-frame iframe {
-        height: 460px;
-      }
     }
 
     @media (max-width: 640px) {
@@ -637,10 +598,6 @@
 
       .hero h1 {
         font-size: 2.1rem;
-      }
-
-      .preview-frame iframe {
-        height: 390px;
       }
 
       .sticky-bar {
@@ -688,7 +645,7 @@
 <body>
 
   <div class="announcement">
-    ⚡ Limited Early Pricing — Book $10.99 · Bundle $25.99 · Amazon & Kindle Coming Soon
+    ⚡ Limited Early Pricing — Book $10.99 · Bundle $25.99 · Preview Sample Before You Buy
   </div>
 
   <section class="hero">
@@ -696,10 +653,10 @@
       <div class="hero-eyebrow">Performance Vitality System</div>
       <h1>Reset Your Energy, <br><span>Routine & Consistency</span></h1>
       <p class="hero-sub">
-        A complete nutrition and lifestyle support system built for people who want
-        real, lasting results — not another plan that fades in two weeks.
+        A complete nutrition and routine support system built for people who want
+        real, lasting results through food, structure, and consistency.
       </p>
-      <div class="hero-badge">⭐⭐⭐⭐⭐ 5-Star Value • Early Access Pricing</div>
+      <div class="hero-badge">⭐⭐⭐⭐⭐ Early Access Value • Limited Launch Pricing</div>
     </div>
   </section>
 
@@ -723,7 +680,7 @@
           <li><span class="check">✔</span><span>Bonus snacks and healing drinks</span></li>
           <li><span class="check">✔</span><span>7-day vitality plan and grocery system</span></li>
           <li><span class="check">✔</span><span>Nutrition guidance and wellness support</span></li>
-          <li><span class="check">✔</span><span>Coming soon to Amazon and Kindle</span></li>
+          <li><span class="check">✔</span><span>Digital access delivered instantly</span></li>
         </ul>
 
         <div class="price-block">
@@ -736,14 +693,14 @@
           Get Instant Access — $10.99
         </a>
 
-        <a href="https://heyzine.com/flip-book/39a79a59da.html" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-          Preview the Book First
+        <a href="/sample-preview.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          Preview Sample PDF
         </a>
 
         <div class="trust-row">
           <span>🔒 Secure Checkout</span>
           <span>⚡ Instant Access</span>
-          <span>📖 Digital Delivery</span>
+          <span>📖 Sample Preview Available</span>
         </div>
       </div>
     </article>
@@ -766,23 +723,23 @@
           <li><span class="check">✔</span><span>Performance Vitality Recipe Book</span><span class="price-tag">$29.99</span></li>
           <li><span class="check">✔</span><span>90-day app early priority access</span><span class="price-tag">$15.99</span></li>
           <li><span class="check">✔</span><span>Daily planning and routine structure</span></li>
-          <li><span class="check">✔</span><span>Priority access before official release date</span></li>
-          <li><span class="check">✔</span><span>Best value if you want the full experience</span></li>
+          <li><span class="check">✔</span><span>Priority access before official release</span></li>
+          <li><span class="check">✔</span><span>Best value for the full experience</span></li>
         </ul>
 
         <div class="price-block">
           <div class="price-was">Total Value: $79.99</div>
           <div class="price-now"><sup>$</sup>25.99</div>
           <div class="price-note">Bundle savings • Book + app access together</div>
-          <div class="price-warning">Save more before the official launch</div>
+          <div class="price-warning">Save more before public launch</div>
         </div>
 
         <a href="https://buy.stripe.com/eVq3cvazN9jxfytbb18g004" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
           Get Instant Access Bundle — $25.99
         </a>
 
-        <a href="https://heyzine.com/flip-book/39a79a59da.html" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-          Preview the Recipe Book
+        <a href="/sample-preview.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          Preview Sample PDF
         </a>
 
         <div class="trust-row">
@@ -796,12 +753,35 @@
 
   <div class="divider"></div>
 
+  <section class="preview-section">
+    <div class="preview-wrap">
+      <p class="preview-eyebrow">Look Inside</p>
+      <h2>Preview the Book Before You Buy</h2>
+      <p class="preview-sub">
+        Review a sample preview before purchasing. This gives you a look at the
+        design, structure, and feel of the book without exposing the full paid version.
+      </p>
+
+      <div class="preview-buttons">
+        <a href="/sample-preview.pdf" target="_blank" rel="noopener noreferrer" class="preview-btn">
+          Open Sample Preview PDF
+        </a>
+
+        <a href="https://buy.stripe.com/00weVddLZ2V9ae96UL8g002" target="_blank" rel="noopener noreferrer" class="buy-btn">
+          Get the Book — $10.99
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
   <section class="section">
     <div class="section-label">What You Get</div>
     <h2 class="section-title">Everything You Need to Get Started</h2>
     <p class="section-sub">
-      This is more than a cookbook. It is a practical system built to support
-      your meals, your routine, your energy, and your consistency.
+      This is more than a cookbook. It is a practical support system built around
+      nutrition, planning, consistency, and daily structure.
     </p>
 
     <div class="features-grid">
@@ -843,45 +823,6 @@
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <section class="preview-section">
-    <div class="preview-wrap">
-      <p class="preview-eyebrow">Look Inside</p>
-      <h2>Preview the Book Before You Buy</h2>
-      <p class="preview-sub">
-        See the layout, recipes, and overall feel before you purchase.
-        If the embedded preview does not load on your device, use the preview button below.
-      </p>
-
-      <div class="preview-frame">
-        <iframe
-          src="https://heyzine.com/flip-book/39a79a59da.html?embed=1"
-          title="Performance Vitality Recipe Book Preview"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <div class="preview-actions">
-        <a
-          href="https://heyzine.com/flip-book/39a79a59da.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="preview-btn">
-          Open Full Preview
-        </a>
-
-        <a
-          href="https://buy.stripe.com/00weVddLZ2V9ae96UL8g002"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="buy-btn">
-          Get the Book — $10.99
-        </a>
-      </div>
-    </div>
-  </section>
-
   <section class="story-section">
     <div class="section-label">Why This Matters</div>
     <h2 class="section-title">Built From More Than Recipes</h2>
@@ -903,7 +844,7 @@
 
       <div class="story-card">
         <h3>Grow Into the App</h3>
-        <p>The book helps you start. The app helps you stay consistent and organized long-term.</p>
+        <p>The book helps you start. The app helps you stay organized, focused, and consistent long-term.</p>
       </div>
     </div>
   </section>
@@ -911,8 +852,8 @@
   <section class="final-cta">
     <h2>Ready to <span>Start Your Reset?</span></h2>
     <p>
-      Choose the option that fits you best. Start with the book, or save more by
-      getting the book and early app access together.
+      Start with the book or save more with the bundle. Both are available now
+      at limited early-access pricing.
     </p>
 
     <div class="final-buttons">
